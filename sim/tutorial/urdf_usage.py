@@ -43,7 +43,8 @@ class URDFExample:
         builder = newton.ModelBuilder()
         builder.default_shape_cfg = self.urdf_shape_cfg
         builder.rigid_gap = 0.001
-        urdf_path = os.path.join(os.path.dirname(__file__), "assets/robot/ARX-X5/X5A.urdf")
+        # urdf_path = os.path.join(os.path.dirname(__file__), "assets/robot/ARX-X5/X5A.urdf")
+        urdf_path = os.path.join(os.path.dirname(__file__), "assets/robot/ARX-X5/X5A_v2.urdf")
 
         builder.add_urdf(
             urdf_path,
