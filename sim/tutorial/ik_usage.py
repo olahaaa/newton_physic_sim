@@ -3,6 +3,10 @@ import newton
 import newton.ik as ik
 import os
 
+# 这份代码没有使用mujoco solver而是只使用了ik solver
+# 直接写入joint_q，而没有写入control
+# 所以viewer中看不到移动过程
+
 class IKExample:
     def __init__(self, viewer):
         self.fps = 60
