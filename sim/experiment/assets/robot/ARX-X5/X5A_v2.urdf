@@ -147,7 +147,7 @@
     <limit lower="-3.14" upper="3.14" effort="100" velocity="1000"/>
   </joint>
 
-  <!-- No collision for camera_base (intentional) -->
+  <!-- gripper part -->
 
   <link name="link7">
     <visual><geometry><mesh filename="meshes/link7_new.STL"/></geometry></visual>

@@ -175,7 +175,7 @@ class ClothEnvBase(BaseEnv):
 
         self._single_arm_models = []
 
-        # 硬编码加载资产
+        # 加载资产
         self._add_cloth_asset()
         self._add_board_asset()
         self._add_robot_assets()

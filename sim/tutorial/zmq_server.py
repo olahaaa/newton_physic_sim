@@ -5,23 +5,6 @@ print("Starting ZMQ publisher...")
 socket = context.socket(zmq.PUB)
 socket.bind("tcp://*:5555")
 
-# while True:
-#     # Modified: Added terminal input for target pose
-#     try:
-#         input_str = input("Enter target pose as 7 floats [x,y,z,qx,qy,qz,qw]: ")
-#         parts = input_str.strip().split()
-#         if len(parts) != 7:
-#             print("Invalid input: need exactly 7 numbers")
-#             continue
-#         pose = [float(p) for p in parts]
-#         msg = " ".join(str(p) for p in pose)
-#         socket.send_string(msg)
-#         print(f"Published pose: {msg}")
-#     except ValueError:
-#         print("Invalid input: not all numbers")
-#     except KeyboardInterrupt:
-#         break
-
 while True:
     try:
         # 输入两只机械臂的目标位姿，每个 8 个数字

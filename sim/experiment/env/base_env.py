@@ -7,8 +7,6 @@ import newton
 
 from controller.base_controller import BaseController
 from controller.ik_controller import IKController
-from renderer.base_renderer import BaseRenderer
-from renderer.default_renderer import DefaultRenderer
 
 
 class BaseEnv:
@@ -28,27 +26,19 @@ class BaseEnv:
         self.graph = None
 
         self.controller: Optional[BaseController] = None
-        self.renderer: Optional[BaseRenderer] = None
 
     # ═══════════════════════════════════════════
     # 两阶段初始化
     # ═══════════════════════════════════════════
 
-    def initialize_resources(self, no_renderer: bool = False) -> None:
-        """在 env 构造完成后调用，创建 renderer 和 controller。"""
-        if not no_renderer:
-            self.setup_renderer()
+    def initialize_resources(self) -> None:
+        """在 env 构造完成后调用，创建 controller。"""
         self.setup_controller()
 
     def setup_controller(self) -> None:
         """硬编码创建 IKController。"""
         self.controller = IKController()
         self.controller.initialize_resources(self)
-
-    def setup_renderer(self) -> None:
-        """硬编码创建 DefaultRenderer。"""
-        self.renderer = DefaultRenderer()
-        self.renderer.initialize_resources(self)
 
     # ═══════════════════════════════════════════
     # CUDA Graph
@@ -86,9 +76,11 @@ class BaseEnv:
     # 渲染
     # ═══════════════════════════════════════════
 
-    def render(self, return_renderings: bool = False) -> dict:
-        """委托给 renderer。"""
-        if self.renderer is None:
-            return {}
-        return self.renderer.render(self, return_renderings=return_renderings)
+    def render(self) -> None:
+        """渲染当前帧到 viewer。"""
+        if self.viewer is None:
+            return
+        self.viewer.begin_frame(self.sim_time)
+        self.viewer.log_state(self.state_0)
+        self.viewer.end_frame()
 

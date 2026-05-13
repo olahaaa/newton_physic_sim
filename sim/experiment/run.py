@@ -10,7 +10,7 @@ def main() -> None:
     # 创建环境（全部资产在构造时硬编码加载）
     env = ClothEnvARX(headless=False)
 
-    # 两阶段初始化：创建 renderer 和 IK controller
+    # 两阶段初始化：创建 IK controller
     env.initialize_resources()
 
     # 初始 IK 目标（双臂各 8 维：pos(3) + quat_xyzw(4) + gripper(1)）
